@@ -2,6 +2,7 @@
 const graphql = require("graphql");
 const { GraphQLObjectType, GraphQLString } = graphql;
 
+// SET TYPE =================================================================//
 const UserType = new GraphQLObjectType({
   name: "UserType",
   fields: {
@@ -9,4 +10,5 @@ const UserType = new GraphQLObjectType({
   }
 });
 
+// EXPORTS ==================================================================//
 module.exports = UserType;
