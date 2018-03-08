@@ -6,7 +6,7 @@ import Header from "./Header";
 // DEFINE COMPONENT =========================================================//
 const App = props => {
   return (
-    <div>
+    <div className="container">
       <Header />
       {props.children}
     </div>

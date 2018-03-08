@@ -1,17 +1,29 @@
 // IMPORTS ==================================================================//
 import React, { Component } from "react";
-/*import { graphql } from "react-apollo";
-import { Link } from "react-router";
+import { graphql } from "react-apollo";
 
 import userQuery from "../queries/CurrentUser";
-import logoutMutation from "../mutations/logout";*/
+import loginMutation from "../mutations/login";
+import AuthForm from "./AuthForm";
 
 // DEFINE COMPONENT =========================================================//
 class LoginForm extends Component {
+  onSubmit({ email, password }) {
+    this.props.mutate({
+      variables: { email, password },
+      refetchQueries: [{ query: userQuery }]
+    });
+  }
+
   render() {
-    return <div>Login</div>;
+    return (
+      <div>
+        <h4>Login</h4>
+        <AuthForm onSubmit={this.onSubmit.bind(this)} />
+      </div>
+    );
   }
 }
 
 // EXPORT ===================================================================//
-export default LoginForm;
+export default graphql(loginMutation)(LoginForm);
