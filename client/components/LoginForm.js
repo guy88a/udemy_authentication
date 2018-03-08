@@ -8,18 +8,34 @@ import AuthForm from "./AuthForm";
 
 // DEFINE COMPONENT =========================================================//
 class LoginForm extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      errors: []
+    };
+  }
+
   onSubmit({ email, password }) {
-    this.props.mutate({
-      variables: { email, password },
-      refetchQueries: [{ query: userQuery }]
-    });
+    this.props
+      .mutate({
+        variables: { email, password },
+        refetchQueries: [{ query: userQuery }]
+      })
+      .catch(res => {
+        const errors = res.graphQLErrors.map(error => error.message);
+        this.setState({ errors });
+      });
   }
 
   render() {
     return (
       <div>
         <h4>Login</h4>
-        <AuthForm onSubmit={this.onSubmit.bind(this)} />
+        <AuthForm
+          errors={this.state.errors}
+          onSubmit={this.onSubmit.bind(this)}
+        />
       </div>
     );
   }
