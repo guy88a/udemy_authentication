@@ -7,6 +7,7 @@ import { Router, hashHistory, Route, IndexRoute } from "react-router";
 
 //components
 import App from "./components/App";
+import LoginForm from "./components/LoginForm";
 
 // SETTINGS =================================================================//
 const networkInterface = createNetworkInterface({
@@ -27,7 +28,7 @@ const Root = () => {
     <ApolloProvider client={client}>
       <Router history={hashHistory}>
         <Route path="/" component={App}>
-          asd
+          <Route path="login" component={LoginForm} />
         </Route>
       </Router>
     </ApolloProvider>
