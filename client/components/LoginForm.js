@@ -1,6 +1,7 @@
 // IMPORTS ==================================================================//
 import React, { Component } from "react";
 import { graphql } from "react-apollo";
+import { hashHistory } from "react-router";
 
 import userQuery from "../queries/CurrentUser";
 import loginMutation from "../mutations/login";
@@ -18,7 +19,7 @@ class LoginForm extends Component {
 
   componentWillUpdate(nextProps) {
     if (!this.props.data.user && nextProps.data.user) {
-      console.log("Authenticated!");
+      hashHistory.push("/dashboard");
     }
   }
 
