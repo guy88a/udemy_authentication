@@ -16,6 +16,12 @@ class LoginForm extends Component {
     };
   }
 
+  componentWillUpdate(nextProps) {
+    if (!this.props.data.user && nextProps.data.user) {
+      console.log("Authenticated!");
+    }
+  }
+
   onSubmit({ email, password }) {
     this.props
       .mutate({
@@ -42,4 +48,4 @@ class LoginForm extends Component {
 }
 
 // EXPORT ===================================================================//
-export default graphql(loginMutation)(LoginForm);
+export default graphql(userQuery)(graphql(loginMutation)(LoginForm));
